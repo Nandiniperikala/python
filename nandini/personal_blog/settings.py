@@ -169,3 +169,5 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 #LOGIN_REDIRECT_URL = 'http://localhost:8000/*'
+#SOCIALACCOUNT_ADAPTER = 'blog.adapters.KeycloakSocialAccountAdapter'
+

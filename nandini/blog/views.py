@@ -9,7 +9,13 @@ from .serializers import TeacherSerializer
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views import View
+from django.http import JsonResponse
 
+
+from django.shortcuts import redirect
+
+def keycloak_login(request):
+    return redirect("account/social/login/keycloak/")
 
 @method_decorator(login_required, name='dispatch')
 class TeacherListCreateView(generics.ListCreateAPIView):
@@ -20,5 +26,9 @@ class TeacherRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
 
-
+@method_decorator(login_required, name='dispatch')
+class MyApiView(View):
+    def get(self, request, *args, **kwargs):
+        data = {'message': 'Hello, this is a simple API response!'}
+        return JsonResponse(data)
 

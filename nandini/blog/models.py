@@ -1,4 +1,5 @@
 from django.db import models
+from django.views import View
 
 class Teacher(models.Model):
     number = models.IntegerField()
@@ -33,4 +34,4 @@ def delete_teacher(teacher_id):
     teacher = Teacher.objects.get(pk=teacher_id)
     teacher.delete()
 
-# Create your models here.
+

@@ -17,10 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.decorators import login_required
+from blog.views import keycloak_login
+from blog.views import MyApiView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('blog.urls')),
     # path('api/teachers/', login_required(include('blog.urls'))),
     path('accounts/', include('allauth.urls')),
+    path('keycloak-login/', keycloak_login, name='keycloak-login'),
+    path('api/', MyApiView.as_view(), name='my-api'),
 ]
